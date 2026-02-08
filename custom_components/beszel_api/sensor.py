@@ -32,6 +32,11 @@ async def async_setup_entry(hass, entry, async_add_entities):
                 entities.append(BeszelUptimeSensor(coordinator, system))
                 entities.append(BeszelGPUSensor(coordinator, system))
 
+                # Create Load Average sensors if available
+                if getattr(system, "info", {}).get("la"):
+                    for i in range(3):
+                        entities.append(BeszelLoadAverageSensor(coordinator, system, i))
+
                 # Get stats for this system
                 system_stats = stats_data.get(system.id, {})
 
@@ -138,6 +143,40 @@ class BeszelGPUSensor(BeszelBaseSensor):
     @property
     def state_class(self):
         return SensorStateClass.MEASUREMENT
+
+
+class BeszelLoadAverageSensor(BeszelBaseSensor):
+    def __init__(self, coordinator, system, index):
+        super().__init__(coordinator, system)
+        self._index = index
+        self._minutes = [1, 5, 15][index]
+
+    @property
+    def unique_id(self):
+        return f"beszel_{self._system_id}_load_avg_{self._minutes}"
+
+    @property
+    def name(self):
+        return f"{self.system.name} Load Average {self._minutes}m" if self.system else None
+
+    @property
+    def icon(self):
+        return "mdi:cpu-64-bit"
+
+    @property
+    def native_value(self):
+        la = self.system.info.get("la")
+        if la and isinstance(la, list) and len(la) > self._index:
+            return la[self._index]
+        return None
+
+    @property
+    def state_class(self):
+        return SensorStateClass.MEASUREMENT
+
+    @property
+    def suggested_display_precision(self):
+        return 2
 
 
 class BeszelRAMSensor(BeszelBaseSensor):
