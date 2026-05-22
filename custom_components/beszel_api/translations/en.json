@@ -8,11 +8,8 @@
           "url": "URL",
           "username": "Username (optional)",
           "password": "Password (optional)",
-          "update_check": "Check for updates",
+          "update_interval": "API update interval in seconds",
           "verify_ssl": "Verify Beszel API SSL certificate"
-        },
-        "data_description": {
-          "update_check": "Connects periodically to github.com to check for new releases"
         }
       }
     }
@@ -26,11 +23,8 @@
             "url": "URL",
             "username": "Username (optional)",
             "password": "Password (optional)",
-            "update_check": "Check for updates",
+          "update_interval": "API update interval in seconds",
             "verify_ssl": "Verify Beszel API SSL certificate"
-          },
-          "data_description": {
-            "update_check": "Connects periodically to github.com to check for new releases"
           }
         }
     }

@@ -8,11 +8,8 @@
           "url": "URL",
           "username": "Benutzername (optional)",
           "password": "Passwort (optional)",
-          "update_check": "Nach Updates suchen",
-            "verify_ssl": "Beszel API SSL Zertifikat überprüfen"
-        },
-        "data_description": {
-          "update_check": "Verbindet sich periodisch mit github.com, um nach neuen Releases zu suchen"
+          "update_interval": "API Updateintervall in Sekunden",
+          "verify_ssl": "Beszel API SSL Zertifikat überprüfen"
         }
       }
     }
@@ -26,11 +23,8 @@
           "url": "URL",
           "username": "Benutzername (optional)",
           "password": "Passwort (optional)",
-          "update_check": "Nach Updates suchen",
+          "update_interval": "API Updateintervall in Sekunden",
           "verify_ssl": "Beszel API SSL Zertifikat überprüfen"
-        },
-        "data_description": {
-          "update_check": "Verbindet sich periodisch mit github.com, um nach neuen Releases zu suchen"
         }
       }
     }
